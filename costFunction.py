@@ -4,7 +4,7 @@ import numpy as np
 # need the T_highest as set by the user
 # need days_allowed from user
 
-def find_days(year_data):
+def find_days(year_data, t_in, t_highest, days_allowed):
     savings_list = []
     hot_streak = 0 
     hot_lull = 0 
