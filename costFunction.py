@@ -1,17 +1,14 @@
 import numpy as np
 # need to import the energy calculation
-# need the T_in as a variable set by the user
-# need the T_highest as set by the user
-# need days_allowed from user
 
 def find_days(year_data, t_in, t_highest, days_allowed):
     savings_list = []
     hot_streak = 0 
     hot_lull = 0 
     days_left = days_allowed
-    for t_out in year_data[1]:
+    for t_out in year_data:
         energy_saved = energy_calc(t_in, t_out) - energy_calc(t_highest, t_out)
-        savings_list += energy_saved
+        savings_list += [energy_saved]
     gain_list = savings_list
     hot_days = []
     for (i,day_saving) in enumerate(savings_list):
@@ -21,13 +18,15 @@ def find_days(year_data, t_in, t_highest, days_allowed):
             hot_streak += 1
             hot_lull = 0
             days_left -= 1
-            hot_days += i
+            hot_days += [i]
         else:
             hot_streak = 0
             hot_lull += 1
     return hot_days
 
-
+def energy_calc(t_in, t_out):
+    energy = ((t_out-t_in)**2)/(273+t_out) # Needs to be in Kelvin on the bottom
+    return energy
 
 def calc_gain(hot_streak, hot_lull, days_left, days_allowed, e_saving):
     gain = e_saving

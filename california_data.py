@@ -9,7 +9,6 @@ with open("1242686.csv","r") as file:
     for row in reader:
         weather_data[row['DATE']] = row['TMAX']
 
-print(weather_data.keys())
 def data_for_past_year(year, month, day):
     d0 = date(int(year), int(month), int(day))
 
