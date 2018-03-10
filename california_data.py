@@ -13,15 +13,15 @@ print(weather_data.keys())
 def data_for_past_year(year, month, day):
     d0 = date(int(year), int(month), int(day))
 
-    data_last_year = dict()
+    data_last_year = [[],[]]
 
     for key, value in weather_data.items():
         d1 = date(*list(map(int, [key[:4], key[5:7], key[8:10]])))
         # print(d0,d1,(d1-d0).days)
         if (d1-d0).days in range(-365,1):
-            data_last_year[key] = float(value)
+            data_last_year[0].append(key)
+            data_last_year[1].append(float(value))
 
     return data_last_year
 
-print(data_for_past_year(2012,3,4))
 
